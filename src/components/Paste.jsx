@@ -40,6 +40,15 @@ function Paste() {
       });
   };
 
+  // Helper function to truncate content to a specified word limit
+  const truncateContent = (content, wordLimit = 20) => {
+    const words = content.split(" ");
+    if (words.length > wordLimit) {
+      return words.slice(0, wordLimit).join(" ") + "...";
+    }
+    return content;
+  };
+
   return (
     <div className="max-w-4xl mx-auto mt-10 space-y-6 bg-white/10 backdrop-blur-md min-h-screen p-6 rounded-lg border border-white/20 shadow-lg text-white">
       <input
@@ -58,7 +67,9 @@ function Paste() {
           <div className="text-xl font-semibold text-[#E2E2B6] mb-2">
             {paste.title}
           </div>
-          <div className="text-sm text-gray-200 mb-4">{paste.content}</div>
+          <div className="text-sm text-gray-200 mb-4">
+            {truncateContent(paste.content, 20)} {/* Display truncated content */}
+          </div>
           <div className="flex gap-4 flex-wrap">
             <Link
               to={`/?pasteId=${paste._id}`}
@@ -84,7 +95,7 @@ function Paste() {
             </Link>
             <button
               onClick={() => handleDelete(paste._id)}
-              className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition-all duration-300"
+              className="flex cursor-pointer items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition-all duration-300"
             >
               <img
                 src="https://cdn-icons-png.flaticon.com/512/3917/3917242.png"
@@ -95,7 +106,7 @@ function Paste() {
             </button>
             <button
               onClick={() => handleCopyContent(paste.content)}
-              className="flex items-center gap-2 bg-[#E2E2B6] hover:bg-yellow-200 text-black px-3 py-1 rounded transition-all duration-300"
+              className="flex cursor-pointer items-center gap-2 bg-[#E2E2B6] hover:bg-yellow-200 text-black px-3 py-1 rounded transition-all duration-300"
             >
               <img
                 src="https://cdn-icons-png.flaticon.com/512/3914/3914097.png"
@@ -106,7 +117,7 @@ function Paste() {
             </button>
             <button
               onClick={() => handleCopyLink(paste._id)}
-              className="flex items-center gap-2 bg-black/30 hover:bg-black/50 text-white px-3 py-1 rounded transition-all duration-300"
+              className="flex cursor-pointer items-center gap-2 bg-black/30 hover:bg-black/50 text-white px-3 py-1 rounded transition-all duration-300"
             >
               <img
                 src="https://cdn-icons-png.flaticon.com/512/7931/7931033.png"

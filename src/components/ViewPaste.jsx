@@ -22,7 +22,7 @@ function ViewPaste() {
       <textarea
         className="w-full min-h-[300px] bg-white/10 text-white border border-white/20 rounded-md px-4 py-2 transition-all duration-300"
         value={paste.content}
-        maxLength={100}
+        
         disabled
       ></textarea>
     </div>
