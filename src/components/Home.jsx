@@ -38,6 +38,21 @@ function Home() {
     setSearchParams({});
   }
 
+  useEffect(() => {
+    if (pasteId) {
+      const paste = allPastes.find((p) => p._id === pasteId);
+      if (paste) {
+        setTitle(paste.title);
+        setValue(paste.content);
+      } else {
+        // Paste not found
+        setTitle("");
+        setValue("");
+      }
+    }
+  }, [pasteId, allPastes]);
+  
+
   return (
     <div className="max-w-4xl mx-auto mt-10 bg-white/10 backdrop-blur-md p-6 rounded-lg border border-gray-700 shadow-lg text-black">
     <div className="flex flex-col md:flex-row gap-4 items-stretch mb-6">
