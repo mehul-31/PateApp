@@ -8,7 +8,11 @@ function ViewPaste() {
   const paste = allPastes.find((p) => p._id === id);
 
   if (!paste)
-    return <div className="text-red-500 text-center mt-10">Paste not found!</div>;
+    return (
+      <div className="text-red-500 text-center mt-10 text-xl">
+        Paste not found or has been deleted.
+      </div>
+    );
 
   return (
     <div className="max-w-4xl mx-auto mt-10 space-y-6 bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20 shadow-lg text-white">
@@ -22,7 +26,6 @@ function ViewPaste() {
       <textarea
         className="w-full min-h-[300px] bg-white/10 text-white border border-white/20 rounded-md px-4 py-2 transition-all duration-300"
         value={paste.content}
-        
         disabled
       ></textarea>
     </div>

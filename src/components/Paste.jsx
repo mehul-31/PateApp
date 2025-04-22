@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 function Paste() {
-  const pastes = useSelector((state) => state.paste.pastes);
+  const pastes = useSelector((state) => state.paste?.pastes || []);
   const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch();
 
@@ -18,9 +18,7 @@ function Paste() {
   const handleCopyContent = (content) => {
     navigator.clipboard
       .writeText(content)
-      .then(() => {
-        toast.success("Content copied to clipboard!");
-      })
+      .then(() => toast.success("Content copied to clipboard!"))
       .catch((err) => {
         toast.error("Failed to copy content.");
         console.error("Clipboard write failed", err);
@@ -31,22 +29,18 @@ function Paste() {
     const pasteUrl = `${window.location.origin}/pastes/${pasteId}`;
     navigator.clipboard
       .writeText(pasteUrl)
-      .then(() => {
-        toast.success("Link copied to clipboard!");
-      })
+      .then(() => toast.success("Link copied to clipboard!"))
       .catch((err) => {
         toast.error("Failed to copy link.");
         console.error("Clipboard write failed", err);
       });
   };
 
-  // Helper function to truncate content to a specified word limit
   const truncateContent = (content, wordLimit = 20) => {
     const words = content.split(" ");
-    if (words.length > wordLimit) {
-      return words.slice(0, wordLimit).join(" ") + "...";
-    }
-    return content;
+    return words.length > wordLimit
+      ? words.slice(0, wordLimit).join(" ") + "..."
+      : content;
   };
 
   return (
@@ -59,6 +53,10 @@ function Paste() {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
+      {filteredData.length === 0 && (
+        <p className="text-center text-white/60 mt-8">No pastes found.</p>
+      )}
+
       {filteredData.map((paste) => (
         <div
           key={paste._id}
@@ -68,7 +66,7 @@ function Paste() {
             {paste.title}
           </div>
           <div className="text-sm text-gray-200 mb-4">
-            {truncateContent(paste.content, 20)} {/* Display truncated content */}
+            {truncateContent(paste.content, 20)}
           </div>
           <div className="flex gap-4 flex-wrap">
             <Link
@@ -95,7 +93,7 @@ function Paste() {
             </Link>
             <button
               onClick={() => handleDelete(paste._id)}
-              className="flex cursor-pointer items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition-all duration-300"
+              className="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition-all duration-300"
             >
               <img
                 src="https://cdn-icons-png.flaticon.com/512/3917/3917242.png"
@@ -106,7 +104,7 @@ function Paste() {
             </button>
             <button
               onClick={() => handleCopyContent(paste.content)}
-              className="flex cursor-pointer items-center gap-2 bg-[#E2E2B6] hover:bg-yellow-200 text-black px-3 py-1 rounded transition-all duration-300"
+              className="flex items-center gap-2 bg-[#E2E2B6] hover:bg-yellow-200 text-black px-3 py-1 rounded transition-all duration-300"
             >
               <img
                 src="https://cdn-icons-png.flaticon.com/512/3914/3914097.png"
@@ -117,7 +115,7 @@ function Paste() {
             </button>
             <button
               onClick={() => handleCopyLink(paste._id)}
-              className="flex cursor-pointer items-center gap-2 bg-black/30 hover:bg-black/50 text-white px-3 py-1 rounded transition-all duration-300"
+              className="flex items-center gap-2 bg-black/30 hover:bg-black/50 text-white px-3 py-1 rounded transition-all duration-300"
             >
               <img
                 src="https://cdn-icons-png.flaticon.com/512/7931/7931033.png"
