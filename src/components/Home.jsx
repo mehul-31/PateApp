@@ -55,7 +55,7 @@ function Home() {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 bg-white/10 backdrop-blur-md p-6 rounded-lg border border-gray-700 shadow-lg text-black">
-    <div className="flex flex-col md:flex-row gap-4 items-stretch mb-6">
+    <div className="flex flex-col md:flex-row gap-4 items-stretch mb-6 w-full">
   <input
     type="text"
     className="w-full md:w-2/3 bg-white/10 text-black placeholder-black border border-white/20 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400 transition-all duration-300"
