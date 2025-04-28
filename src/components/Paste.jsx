@@ -82,7 +82,7 @@ function Paste() {
             </Link>
             <Link
               to={`/pastes/${paste._id}`}
-              className="flex items-center gap-2 bg-[#6EACDA] hover:bg-[#03346E] text-white px-3 py-1 rounded transition-all duration-300"
+              className="flex items-center gap-2 bg-[#5b66cd] hover:bg-[#03346E] text-white px-3 py-1 rounded transition-all duration-300"
             >
               <img
                 src="https://cdn-icons-png.flaticon.com/512/3917/3917752.png"

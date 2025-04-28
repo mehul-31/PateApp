@@ -6,13 +6,13 @@ function Navbar() {
     <nav className="flex gap-6 justify-center py-4 bg-white/10 backdrop-blur-md shadow-md border-b border-white/20 text-white">
       <NavLink
         to="/"
-        className="text-[#E2E2B6] hover:text-white transition-all duration-300"
+        className="text-[#000000] hover:text-white transition-all duration-300"
       >
         Home
       </NavLink>
       <NavLink
         to="/pastes"
-        className="text-[#E2E2B6] hover:text-white transition-all duration-300"
+        className="text-[#000000] hover:text-white transition-all duration-300"
       >
         Pastes
       </NavLink>

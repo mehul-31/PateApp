@@ -64,7 +64,7 @@ function Home() {
     onChange={(e) => setTitle(e.target.value)}
   />
   <button
-    className="w-full md:w-auto bg-[#6EACDA] hover:bg-[#03346E] px-4 py-2 rounded-md text-black font-semibold transition-all duration-300"
+    className="w-full md:w-auto bg-[#6EACDA] hover:bg-[#6ad3d7] px-4 py-2 rounded-md text-black font-semibold transition-all duration-300"
     onClick={createPaste}
   >
     {pasteId ? "Update Paste" : "Create My Paste"}
