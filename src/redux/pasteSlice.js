@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
-import Paste from "../components/Paste";
 
 const initialState = {
     pastes:localStorage.getItem("pastes") ?
